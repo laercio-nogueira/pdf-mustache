@@ -4,9 +4,10 @@ const htmlPdf = require('html-pdf');
 
 class pdfGenerate {
 
-  constructor(data, mustacheFile) {
+  constructor({data, mustacheFile, config}) {
     this.data = data;
     this.mustacheFile = mustacheFile;
+    this.config = config;
   }
 
   _mustacheDefault() {
@@ -18,11 +19,11 @@ class pdfGenerate {
 
       if (!this.mustacheFile) 
         resolve(this._mustacheDefault())
-
-      fs.readFile(this.mustacheFile, 'utf8', 
+      
+        fs.readFile(this.mustacheFile, 'utf8', 
         (err, html) => err ? 
           reject(err) :
-          resolve(html))
+          resolve(html))      
     })
   }
 
@@ -33,7 +34,7 @@ class pdfGenerate {
 
   async _createFile() {
     const html = await this._concatMustache();
-    return htmlPdf.create(html);
+    return htmlPdf.create(html, this.config);
   }
 
   async toFile(name) {
