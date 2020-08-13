@@ -17,13 +17,13 @@ class pdfGenerate {
   _generateHTML() {
     return new Promise((resolve, reject) => {
 
-      if (!this.mustacheFile) 
+      if (!this.mustacheFile) {
         resolve(this._mustacheDefault())
-      
-        fs.readFile(this.mustacheFile, 'utf8', 
-        (err, html) => err ? 
-          reject(err) :
-          resolve(html))      
+      }
+
+      fs.readFile(this.mustacheFile, 'utf8', (err, html) => {
+        err ? reject(err) : resolve(html)
+      })
     })
   }
 
@@ -41,7 +41,7 @@ class pdfGenerate {
     const pdf = await this._createFile();
 
     pdf.toFile(`${name || 'file'}.pdf`, (err, { filename }) => 
-        console.log(err || filename));
+      console.log(err || filename));
   }
 
   async toBuffer() {

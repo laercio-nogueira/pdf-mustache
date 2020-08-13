@@ -10,9 +10,16 @@
     "html-pdf": "^2.2.0",
     "mustache": "^4.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.3.0",
+    "babel-jest": "^26.3.0",
+    "@stryker-mutator/core": "^3.3.1",
+    "@stryker-mutator/javascript-mutator": "^3.3.1",
+    "@stryker-mutator/jest-runner": "^3.3.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "stryker": "stryker run"
   },
   "repository": {
     "type": "git",
@@ -21,5 +28,14 @@
   "bugs": {
     "url": "https://github.com/divineinfo/pdf-mustache/issues"
   },
-  "homepage": "https://github.com/divineinfo/pdf-mustache#readme"
+  "homepage": "https://github.com/divineinfo/pdf-mustache#readme",
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "testURL": "http://localhost"
+  }
 }

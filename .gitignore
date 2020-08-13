@@ -1,1 +1,8 @@
 node_modules
+coverage
+*.pdf
+jest.config.js
+
+# stryker temp files
+stryker-tmp
+reports
